@@ -4,6 +4,7 @@ function random(min, max) {
 
 var game = {
     size: 20,
+    snake: [],
     createBoard: function() {
         console.log('create board');
         var table = document.createElement('table');
@@ -24,6 +25,8 @@ var game = {
     },
     createSnake: function() {
         console.log('create snake');
+        this.snake.push({row: 10, col: 10});
+        this.snake.push({row: 11, col: 11});
     },
     createFood: function() {
         console.log('create food');
@@ -32,6 +35,7 @@ var game = {
         console.log('run game!');
         this.createBoard();
         this.createSnake();
+        this.renderSnake();
         this.createFood();
         
     }
