@@ -41,13 +41,19 @@ var game = {
     createFood: function() {
         console.log('create food');
     },
+    setEvents: function() {
+        setInterval(this.move.bind(this), 500);
+    },
+    move: function() {
+        console.log('move!');
+    },
     run: function() {
         console.log('run game!');
         this.createBoard();
         this.createSnake();
         this.renderSnake();
         this.createFood();
-        
+        this.setEvents();
     }
 };
 
