@@ -16,6 +16,7 @@ var game = {
             for ( var j = 0; j < this.size; j++ ) {
                 var td = document.createElement('td');
                 td.classList.add('game-table-cell');
+                td.setAttribute('id', 'cell-' + i + '-' + j);
                 tr.appendChild(td);
             }
             table.appendChild(tr);
@@ -26,7 +27,16 @@ var game = {
     createSnake: function() {
         console.log('create snake');
         this.snake.push({row: 10, col: 10});
-        this.snake.push({row: 11, col: 11});
+        this.snake.push({row: 11, col: 10});
+    },
+    renderSnake: function() {
+        var elements = document.getElementsByTagName('td');
+        console.log(elements);
+        for ( var i = 0; i < this.snake.length; i++ ) {
+            var cell = this.snake[i];
+            var id = 'cell-' + cell.row + '-' + cell.col;
+            document.getElementById(id).classList.add('snake-unit');
+        }
     },
     createFood: function() {
         console.log('create food');
