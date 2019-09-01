@@ -7,17 +7,19 @@ var game = {
     createBoard: function() {
         console.log('create board');
         var table = document.createElement('table');
+        table.classList.add('game-table');
 
         for ( var i = 0; i < this.size; i++ ) {
             var tr = document.createElement('tr');
 
-            for ( var j = 0; j < this.size; j++ ){
+            for ( var j = 0; j < this.size; j++ ) {
                 var td = document.createElement('td');
+                td.classList.add('game-table-cell');
                 tr.appendChild(td);
             }
             table.appendChild(tr);
         }
-        
+
         document.getElementById('snake-field').appendChild(table);
     },
     createSnake: function() {
