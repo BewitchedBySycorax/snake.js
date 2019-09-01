@@ -6,8 +6,8 @@ var game = {
     size: 20,
     snake: [],
     direction: {
-        col: -1,
-        row: 0
+        row: -1,
+        col: 0
     },
     createBoard: function() {
         console.log('create board');
@@ -35,7 +35,11 @@ var game = {
     },
     renderSnake: function() {
         var elements = document.getElementsByTagName('td');
-        console.log(elements);
+
+        for ( var i = 0; i < elements.length; i++ ) {
+            elements[i].classList.remove('snake-unit');
+        }
+        
         for ( var i = 0; i < this.snake.length; i++ ) {
             var cell = this.snake[i];
             var id = 'cell-' + cell.row + '-' + cell.col;
@@ -53,8 +57,17 @@ var game = {
         // смотрим направление движения
         // в зависимости от направления
         // определить голову змеи
+
         // добавляем элемент в начало змеи - создаём новую голову
+        var row = this.snake[0].row + this.direction.row;
+        var col = this.snake[0].col + this.direction.col;
+
+        this.snake.unshift({row: row, col: col});
         // удаляем элемент из хвоста змеи - таким образом змея двигается
+        this.snake.pop();
+
+        this.renderSnake();
+        
     },
     run: function() {
         console.log('run game!');
