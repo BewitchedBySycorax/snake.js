@@ -5,6 +5,10 @@ function random(min, max) {
 var game = {
     size: 20,
     snake: [],
+    direction: {
+        col: -1,
+        row: 0
+    },
     createBoard: function() {
         console.log('create board');
         var table = document.createElement('table');
