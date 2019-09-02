@@ -5,6 +5,7 @@ function random(min, max) {
 var game = {
     size: 20,
     snake: [],
+    food: {},
     direction: {
         row: -1,
         col: 0
@@ -37,11 +38,12 @@ var game = {
         this.snake.push({row: 10, col: 10});
         this.snake.push({row: 11, col: 10});
     },
-    renderSnake: function() {
+    render: function() {
         var elements = document.getElementsByTagName('td');
 
         for ( var i = 0; i < elements.length; i++ ) {
             elements[i].classList.remove('snake-unit');
+            elements[i].classList.remove('food-unit');
         }
         
         for ( var i = 0; i < this.snake.length; i++ ) {
@@ -49,9 +51,23 @@ var game = {
             var id = 'cell-' + cell.row + '-' + cell.col;
             document.getElementById(id).classList.add('snake-unit');
         }
+
+        if ( this.food.row && this.food.col ) {
+            var id =  'cell-' + this.food.row + '-' + this.food.col;
+            document.getElementById(id).classList.add('food-unit');
+        }
     },
     createFood: function() {
         console.log('create food');
+        var pool = [];
+        for ( var i = 0; i < this.size; i++ ) {
+            for ( var j = 0; j < this.size; j++ ) {
+                pool.push({row: i, col: j});
+            }
+        }
+        
+        var index = random(0, pool.length);
+        this.food = pool[index];
     },
     setEvents: function() {
         this.intervalId = setInterval(this.move.bind(this), 500);
@@ -123,13 +139,13 @@ var game = {
         // удаляем элемент из хвоста змеи - таким образом змея двигается
         this.snake.pop();
 
-        this.renderSnake();
+        this.render();
     },
     run: function() {
         console.log('run game!');
         this.createBoard();
         this.createSnake();
-        this.renderSnake();
+        this.render();
         this.createFood();
         this.setEvents();
     },
