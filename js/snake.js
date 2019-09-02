@@ -69,7 +69,7 @@ var game = {
         var row = this.snake[0].row + this.direction.row;
         var col = this.snake[0].col + this.direction.col;
 
-        if ( !checkCell(row, col) ) {
+        if ( !this.checkCell(row, col) ) {
             return this.over();
         }
 
