@@ -62,6 +62,10 @@ var game = {
         var row = this.snake[0].row + this.direction.row;
         var col = this.snake[0].col + this.direction.col;
 
+        if ( check.Cell(row, col) ) {
+            this.over();
+        }
+
         this.snake.unshift({row: row, col: col});
         // удаляем элемент из хвоста змеи - таким образом змея двигается
         this.snake.pop();
