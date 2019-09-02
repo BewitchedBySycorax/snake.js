@@ -149,8 +149,15 @@ var game = {
         }
 
         this.snake.unshift({row: row, col: col});
+
         // удаляем элемент из хвоста змеи - таким образом змея двигается
-        this.snake.pop();
+        if ( !this.food || this.food.row != row || this.food.col != col ) {
+            // еды нет
+            this.snake.pop();
+        } else {
+            // еду съели
+            this.createFood();
+        }
 
         this.render();
     },
