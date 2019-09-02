@@ -50,7 +50,7 @@ var game = {
         console.log('create food');
     },
     setEvents: function() {
-        setInterval(this.move.bind(this), 500);
+        this.intervalId = setInterval(this.move.bind(this), 500);
     },
     move: function() {
         console.log('move!');
@@ -71,7 +71,6 @@ var game = {
         this.snake.pop();
 
         this.renderSnake();
-        
     },
     run: function() {
         console.log('run game!');
@@ -80,6 +79,10 @@ var game = {
         this.renderSnake();
         this.createFood();
         this.setEvents();
+    },
+    over: function() {
+        alert('Игра завершена!');
+        clearInterval(this.intervalId);
     }
 };
 
