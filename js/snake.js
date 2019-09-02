@@ -9,6 +9,10 @@ var game = {
         row: -1,
         col: 0
     },
+    KEY_LEFT: 37,
+    KEY_UP: 38,
+    KEY_RIGHT: 39,
+    KEY_DOWN: 40,
     createBoard: function() {
         console.log('create board');
         var table = document.createElement('table');
@@ -56,7 +60,7 @@ var game = {
     changeDirection: function(e) {
         switch ( e.keyCode ) {
 
-            case 37:
+            case this.KEY_LEFT:
                 // движение влево
                 this.direction = {
                     row: 0,
@@ -64,7 +68,7 @@ var game = {
                 };
                 break;
 
-            case 38:
+            case this.KEY_UP:
                 // движение вверх
                 this.direction = {
                     row: -1,
@@ -72,7 +76,7 @@ var game = {
                 };
                 break;
 
-            case 39:
+            case this.KEY_RIGHT:
                 // движение вправо
                 this.direction = {
                     row: 0,
@@ -80,7 +84,7 @@ var game = {
                 };
                 break;
 
-            case 40:
+            case this.KEY_DOWN:
                 // движение вниз
                 this.direction = {
                     row: 1,
