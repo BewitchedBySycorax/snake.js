@@ -53,6 +53,47 @@ var game = {
         this.intervalId = setInterval(this.move.bind(this), 500);
         document.addEventListener('keydown', this.changeDirection.bind(this));
     },
+    changeDirection: function(e) {
+        switch ( e.keyCode ) {
+
+            case 37:
+                // движение влево
+                this.direction = {
+                    row: 0,
+                    col: -1
+                };
+                break;
+
+            case 38:
+                // движение вверх
+                this.direction = {
+                    row: -1,
+                    col: 0
+                };
+                break;
+
+            case 39:
+                // движение вправо
+                this.direction = {
+                    row: 0,
+                    col: 1
+                };
+                break;
+
+            case 40:
+                // движение вниз
+                this.direction = {
+                    row: 1,
+                    col: 0
+                };
+                break;
+            default:
+                break;
+        }
+        console.log(e);
+        console.log(e.target);
+        console.log(this);
+    },
     checkCell: function(row, col) {
         if ( row < 0 || row >= this.size || col < 0 || col >= this.size ) {
             return false;
