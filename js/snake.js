@@ -51,6 +51,7 @@ var game = {
     },
     setEvents: function() {
         this.intervalId = setInterval(this.move.bind(this), 500);
+        document.addEventListener('keydown', this.changeDirection.bind(this));
     },
     checkCell: function(row, col) {
         if ( row < 0 || row >= this.size || col < 0 || col >= this.size ) {
