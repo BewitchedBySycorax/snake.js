@@ -52,6 +52,13 @@ var game = {
     setEvents: function() {
         this.intervalId = setInterval(this.move.bind(this), 500);
     },
+    checkCell: function(row, col) {
+        if ( row < 0 || row >= this.size || col < 0 || col >= this.size ) {
+            return false;
+        }
+
+        return true;
+    },
     move: function() {
         console.log('move!');
         // смотрим направление движения
@@ -62,8 +69,8 @@ var game = {
         var row = this.snake[0].row + this.direction.row;
         var col = this.snake[0].col + this.direction.col;
 
-        if ( check.Cell(row, col) ) {
-            this.over();
+        if ( !checkCell(row, col) ) {
+            return this.over();
         }
 
         this.snake.unshift({row: row, col: col});
