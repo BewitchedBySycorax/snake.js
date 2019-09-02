@@ -57,12 +57,25 @@ var game = {
             document.getElementById(id).classList.add('food-unit');
         }
     },
+    isSnakeCell: function(row, col) {
+        for ( var i = 0; i < this.snake.length; i++ ) {
+            var cell = this.snake[i];
+            
+            if ( cell.row == row && cell.col == col ) {
+                return true;
+            }
+        }
+
+        return false;
+    },
     createFood: function() {
         console.log('create food');
         var pool = [];
         for ( var i = 0; i < this.size; i++ ) {
             for ( var j = 0; j < this.size; j++ ) {
-                pool.push({row: i, col: j});
+                if ( !this.isSnakeCell(i, j) ){
+                    pool.push({row: i, col: j});
+                }
             }
         }
         
@@ -145,9 +158,9 @@ var game = {
         console.log('run game!');
         this.createBoard();
         this.createSnake();
-        this.render();
         this.createFood();
         this.setEvents();
+        this.render();
     },
     over: function() {
         alert('Игра завершена!');
