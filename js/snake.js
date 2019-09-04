@@ -1,3 +1,10 @@
+/* @TODO: 
+    * Выводить счёт в режиме реального времени.
+    * Генерировать временные препятствия на поле.
+    * Убрать границы поля. Т.е. при пересечении границы поля змейка появляется с противоположной стороны.
+    * Продумать, где можно применить замыкания
+*/
+
 function random(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;  
 };
@@ -129,6 +136,10 @@ var game = {
     },
     checkCell: function(row, col) {
         if ( row < 0 || row >= this.size || col < 0 || col >= this.size ) {
+            return false;
+        }
+
+        if ( this.isSnakeCell(row, col) ) {
             return false;
         }
 
